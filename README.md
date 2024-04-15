@@ -1,2 +1,2 @@
 # DHCPManager
-This is a DHCPv4 manager written in Powershell
+This is a DHCPv4 nmanagement tool written in Powershell
