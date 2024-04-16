@@ -106,6 +106,7 @@ function Import_IPv4_Scope {
             if ($scopeName -and $startIP -and $endIP -and $subnetMask -and $compName) {
                 Add-DhcpServerv4Scope -Name $scopeName -StartRange $startIP -EndRange $endIP -SubnetMask $subnetMask -ComputerName $compName 
                 $scopeID = (Get-DhcpServerv4Scope -ComputerName $compName | Where-Object Name -eq $scopeName).ScopeId
+                Write-Host "'$scopeName' with IP range:'$startIP - $endIP' was succesfully added to $compName." -ForegroundColor Green    
 
                 # Add Exclusion Range if all required fields are complete
                 if ($scopeID -and $excluded_StartIP -and $excluded_EndIP -and $compName) {
@@ -118,7 +119,7 @@ function Import_IPv4_Scope {
                 }
             }
             else {
-                Write-Host "One or more required fields are empty for '$scopeName'. Skipping..." -ForegroundColor Yellow
+                Write-Host "Failed to add '$scopeName'. One or more required fields are empty'. Skipping..." -ForegroundColor Red
             }
         }
         catch {
