@@ -1,5 +1,5 @@
 # DHCPv4 Scope Manager
-This is a DHCPv4 nmanagement tool written in Powershell
+This is a DHCPv4 scope management tool written in Powershell
 
 
 DHCP Server Scope Management Tool
