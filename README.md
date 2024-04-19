@@ -1,4 +1,4 @@
-# DHCPManager
+# DHCPv4 Scope Manager
 This is a DHCPv4 nmanagement tool written in Powershell
 
 
