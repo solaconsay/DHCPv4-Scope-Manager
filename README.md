@@ -1,42 +1,45 @@
-# DHCPv4 Scope Manager
-This is a DHCPv4 scope management tool written in Powershell
+DHCPv4 Scope Manager
+This PowerShell script provides an interactive tool for managing DHCPv4 scopes on a specified DHCP server. It supports various operations, including adding and configuring DHCP scopes, excluding IP ranges, setting options, importing configuration from a CSV file, and generating HTML reports.
+
+Features
+  1.  Add DHCPv4 Scope: Define and add a new DHCPv4 scope with a specified IP range, subnet mask, and DHCP server name.
+  2.  Exclude IP Addresses: Exclude specified IP address ranges from an existing DHCPv4 scope.
+  3.  Set Option Value: Set DHCP option values at either the scope or server level.
+  4.  Import DHCPv4 Scope from CSV: Load DHCP configurations from a CSV file, including scopes, exclusions, and option values.
+  5.  Generate DHCPv4 Scope Report: Create an HTML report showing current DHCPv4 scope configurations, exclusions, and option values.
+
+Usage Instructions
+Prerequisites
+-PowerShell with Set-ExecutionPolicy set to allow the execution of remote-signed scripts:
+  Set-ExecutionPolicy -ExecutionPolicy RemoteSigned -Scope LocalMachine
+
+-Ensure that the DHCP PowerShell module is installed and that you have the necessary permissions to manage DHCP settings.
+
+Running the Script
+  1.  Open PowerShell with Administrator privileges.
+  2.  Run the script to launch the DHCPv4 Scope Manager tool. Follow the on-screen prompts to select a specific operation.
+
+Menu Options
+Option 1: Add New DHCPv4 Scope
+  Enter the DHCP server name, scope name, IP range, and subnet mask.
+  
+Option 2: Exclude IP Addresses
+  Specify the DHCP server, scope ID, and IP range to exclude.
+  
+Option 3: Set Option Value
+  Input the DHCP server, option ID, value, and scope ID (optional for scope-level configuration
+  
+Option 4: Import DHCPv4 Scope from CSV
+  Provide a path to a CSV file containing scope configurations. The CSV should include fields for ComputerName, ScopeName, StartIP, EndIP, SubnetMask, Excluded_StartIP, Excluded_EndIP, Option_ID, and Value
+  
+Option 5: Generate DHCPv4 Scope Report
+  Generate an HTML report of the current DHCP configurations, exclusions, and option values for a specified DHCP server.
+  
+Option 6: Exit
+  Exits the tool.
+
+Report Generation
+The report is saved as an HTML file in the current directory with the format DHCPv4 Scope Report-<ServerName>.htm. It includes details on scopes, exclusions, and options.
 
 
-DHCP Server Scope Management Tool
-This PowerShell script enables DHCPv4 scope management and reporting. It allows
-users to add new scopes, exclude IP ranges, set options, import configurations from
-CSV, and generate detailed HTML reports. The script presents a user-friendly menu
-interface and facilitates various DHCPv4 management tasks. A remote DHCP server
-can also be configured provided that it is part of the domain, enhancing efficiency and
-organization.
-Usage
 
-Inputs:
-  • Computer name - full computer name of the DHCPv4 server (e.g. sherwin-dc01.sherwindomain.com)
-  • Scope Name - Specifies the name of the IPv4 scope that is added.
-  • Start Range - Specifies the starting IP address of the range in the subnet from which IP
-  addresses should be leased or exclude by the DHCP server service.
-  • End Range - Specifies the ending IP address of the range in the subnet from which IP
-  addresses should be leased or exclude by the DHCP server service.
-  • Scope Id - Specifies the scope ID, in IPv4 address format for which one or more option
-  values are set.
-  • Option Id - Specifies the numeric identifier (ID) of the option for which one or more values
-  are set.
-  • Value - Specifies one or more values to be set for the option.
-
-Outputs:
-  • Operation 1: Add DHCPv4 Scope in the specified computer name
-  • Operation 2: Exclude IP address range from the provided Scope ID in a computer
-  • Operation 3: Set the option ID and value. This can be in Server Level or Scope ID level
-  • Operation 4: Import DHCPv4 Scope, Excluded IP addresses, and Option settings from the
-  CSV file
-  • Operation 5: Generate an HTML repot
-
-Errors:
-  In case the tool failed to one of its operation, here are the possible issues:
-  • Wrong computer name
-  • Wrong IP address ranges and subne tmask
-  • Wrong option ID and value provided
-  • csv file doesn’t exists
-  • Scope ID or name already exists (I highly recommend to run the Generate report first before
-  trying to make any changes)
